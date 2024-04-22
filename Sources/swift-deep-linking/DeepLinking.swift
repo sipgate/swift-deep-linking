@@ -2,6 +2,7 @@
 //  DeepLinking.swift
 //  Created by Joshua Smith on 5/22/17.
 //  Copyright (c) 2017 iJoshSmith. Licensed under the MIT License.
+//  Copyright (c) 2024 technocidal. Licensed under the MIT License.
 //
 
 import Foundation
@@ -49,37 +50,37 @@ public struct DeepLinkTemplate {
     
     /// A matching URL must include this constant string at the correct location in its path.
     public func term(_ symbol: String) -> DeepLinkTemplate {
-        return appending(pathPart: .term(symbol: symbol))
+        appending(pathPart: .term(symbol: symbol))
     }
     
     /// A matching URL must include a string at the correct location in its path.
     /// - Parameter name: The key of this string in the `path` dictionary of `DeepLinkValues`.
     public func string(named name: String) -> DeepLinkTemplate {
-        return appending(pathPart: .string(name: name))
+        appending(pathPart: .string(name: name))
     }
     
     /// A matching URL must include an integer at the correct location in its path.
     /// - Parameter name: The key of this integer in the `path` dictionary of `DeepLinkValues`.
     public func int(named name: String) -> DeepLinkTemplate {
-        return appending(pathPart: .int(name: name))
+        appending(pathPart: .int(name: name))
     }
     
     /// A matching URL must include a double at the correct location in its path.
     /// - Parameter name: The key of this double in the `path` dictionary of `DeepLinkValues`.
     public func double(named name: String) -> DeepLinkTemplate {
-        return appending(pathPart: .double(name: name))
+        appending(pathPart: .double(name: name))
     }
     
     /// A matching URL must include a boolean at the correct location in its path.
     /// - Parameter name: The key of this boolean in the `path` dictionary of `DeepLinkValues`.
     public func bool(named name: String) -> DeepLinkTemplate {
-        return appending(pathPart: .bool(name: name))
+        appending(pathPart: .bool(name: name))
     }
     
     /// An unordered set of query string parameters.
     /// - Parameter queryStringParameters: A set of parameters that may be required or optional.
     public func queryStringParameters(_ queryStringParameters: Set<QueryStringParameter>) -> DeepLinkTemplate {
-        return DeepLinkTemplate(pathParts: pathParts, parameters: queryStringParameters)
+        DeepLinkTemplate(pathParts: pathParts, parameters: queryStringParameters)
     }
     
     /// A named value in a URL's query string.
@@ -97,7 +98,7 @@ public struct DeepLinkTemplate {
     }
     
     private func appending(pathPart: PathPart) -> DeepLinkTemplate {
-        return DeepLinkTemplate(pathParts: pathParts + [pathPart], parameters: parameters)
+        DeepLinkTemplate(pathParts: pathParts + [pathPart], parameters: parameters)
     }
     
     // MARK: - State
@@ -232,13 +233,6 @@ public struct DeepLinkRecognizer {
 
 // MARK: - QueryStringParameter extension
 extension DeepLinkTemplate.QueryStringParameter: Hashable, Equatable {
-    public var hashValue: Int {
-        return name.hashValue
-    }
-    
-    public static func ==(lhs: DeepLinkTemplate.QueryStringParameter, rhs: DeepLinkTemplate.QueryStringParameter) -> Bool {
-        return lhs.name == rhs.name
-    }
     
     fileprivate var name: String {
         switch self {
